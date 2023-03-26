@@ -1,0 +1,11 @@
+.playlist {
+  width: 350px;
+  height: 450px;
+  padding: 20px 10px;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
