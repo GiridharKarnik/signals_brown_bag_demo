@@ -4,7 +4,7 @@ import { ControlPanel, Playlist } from '../../components/';
 
 import { codePaneTheme } from '../codePaneTheme';
 
-import './Slide2.scss';
+import './Slide1.scss';
 
 export const Slide1: React.FC = () => {
   const { stepId, isActive, step, placeholder } = useSteps(2);

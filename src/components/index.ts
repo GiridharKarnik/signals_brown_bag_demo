@@ -5,3 +5,4 @@ export { Playlist } from './Playlist/Playlist';
 
 export { MemoizedPlaylist } from './Playlist/MemoizedPlaylist';
 export { FilteredPlaylistWithMemoizedSongs } from './Playlist/FilteredPlaylistWithMemoizedSongs';
+export { MemoisedPlaylistWithDynamicFilters } from './Playlist/MemoisedPlaylistWithDynamicFilters';

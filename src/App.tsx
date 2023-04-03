@@ -1,5 +1,13 @@
-import { Deck, Slide, Stepper } from 'spectacle';
-import { Slide0, Slide1, Slide2, Slide3FilteredPlaylist, Slide4MemoizedFilteredPlaylist } from './slides';
+import { Deck, Slide } from 'spectacle';
+import {
+  Slide0,
+  Slide1,
+  Slide2,
+  Slide3FilteredPlaylist,
+  Slide4MemoizedFilteredPlaylist,
+  Slide5PlaylistWithSearch,
+  Slide6PlaylistDynamicFilters,
+} from './slides';
 import React from 'react';
 
 const theme = {
@@ -57,6 +65,14 @@ export default function App() {
 
       <Slide backgroundColor="#282828">
         <Slide4MemoizedFilteredPlaylist />
+      </Slide>
+
+      <Slide backgroundColor="#282828">
+        <Slide5PlaylistWithSearch />
+      </Slide>
+
+      <Slide backgroundColor="#282828">
+        <Slide6PlaylistDynamicFilters />
       </Slide>
 
       {/*<Slide>*/}

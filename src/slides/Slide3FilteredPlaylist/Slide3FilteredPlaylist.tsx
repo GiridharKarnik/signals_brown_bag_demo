@@ -7,7 +7,7 @@ import { ControlPanel, FilteredPlaylistWithMemoizedSongs } from '../../component
 import { Genre, SongType } from '../../components/Playlist/components';
 import { songs } from '../../components/Playlist/data';
 
-import '../Slide1/Slide2.scss';
+import '../Slide1/Slide1.scss';
 
 export const Slide3FilteredPlaylist = () => {
   const [resetKey, setResetKey] = React.useState(0);
@@ -66,7 +66,7 @@ export const Slide3FilteredPlaylist = () => {
               }
             `}
           </CodePane>
-          <p className="code-pane-title">Playlist.tsx</p>
+          <p className="code-pane-title">Playlist.tsx - with unmemoized genre filter</p>
         </div>
       </div>
     </div>

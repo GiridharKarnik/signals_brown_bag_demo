@@ -5,7 +5,7 @@ import { Lottie } from '../../components';
 import * as signalAnimationData from '../../assets/signal-lottie.json';
 import * as reactAnimationData from '../../assets/react-animation.json';
 
-import './Slide1.scss';
+import './Slide0.scss';
 
 export const Slide0: React.FC = () => {
   return (

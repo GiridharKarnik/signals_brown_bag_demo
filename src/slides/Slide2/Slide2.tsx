@@ -3,8 +3,9 @@ import { CodePane, useSteps } from 'spectacle';
 
 import { codePaneTheme } from '../codePaneTheme';
 
-import '../Slide1/Slide2.scss';
 import { ControlPanel, MemoizedPlaylist } from '../../components';
+
+import '../Slide1/Slide1.scss';
 
 export const Slide2 = () => {
   const [resetKey, setResetKey] = React.useState(0);

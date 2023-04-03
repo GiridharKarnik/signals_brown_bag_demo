@@ -5,17 +5,17 @@ import { codePaneTheme } from '../codePaneTheme';
 
 import '../Slide1/Slide1.scss';
 import { ControlPanel, FilteredPlaylistWithMemoizedSongs } from '../../components';
-import { Genre, SongType } from '../../components/Playlist/components';
+import { Genre, Search, SongType } from '../../components/Playlist/components';
 import { songs } from '../../components/Playlist/data';
 import { Filter } from '../../components/Playlist/components/Filter/Filter';
 
-export const Slide4MemoizedFilteredPlaylist = () => {
+export const Slide5PlaylistWithSearch = () => {
   const [resetKey, setResetKey] = React.useState(0);
 
   return (
     <div className="slide2-container">
       <div className="interactive-example">
-        <FilteredPlaylistWithMemoizedSongs key={resetKey} memoizeFilter={true} />
+        <FilteredPlaylistWithMemoizedSongs key={resetKey} memoizeFilter={true} showSearch={true} />
 
         <ControlPanel
           onReset={() => {
@@ -31,10 +31,9 @@ export const Slide4MemoizedFilteredPlaylist = () => {
             //@ts-ignore
             theme={codePaneTheme}
             highlightRanges={[
-              [1, 1],
-              [24, 24],
-              [8, 8],
-              [19, 19],
+              [25, 25],
+              [6, 6],
+              [16, 21],
             ]}
           >
             {`
@@ -43,26 +42,27 @@ export const Slide4MemoizedFilteredPlaylist = () => {
               const Playlist: React.FC = () => {
                 const [playingSong, setPlayingSong] = useState();
                 const [selectedGenre, setSelectedGenre] = useState<Genre | undefined>();
+                const [searchValue, setSearchValue] = useState<string>('');
                 const [filteredSongs, setFilteredSongs] = useState<Array<SongType>>(songs);
             
                 const filter = useCallback(
                   (newSelectedGenre: Genre) => {
-                    if (newSelectedGenre === selectedGenre) {
-                      setSelectedGenre(undefined);
-                      setFilteredSongs(songs);
-                      return;
-                    }
-            
-                    setSelectedGenre(newSelectedGenre);
-                    setFilteredSongs(songs.filter(song => song.genre === newSelectedGenre));
+                    ...
                   },
                   [selectedGenre, setSelectedGenre, setFilteredSongs]
                 );
                 
+                const onSearch = useCallback(
+                    (searchValue: string) => {
+                        ...
+                    },
+                    [setFilteredSongs]
+                );
+                
                 return (
                   <div className="playlist">
+                    <Search value={searchValue} onSearch={onSearch} />
                     <MemoizedFilter selectedGenre={selectedGenre} onClick={filter} />
-                        
                     {songs.map((song: SongProps) => {
                         return <Song {...song} playingSong={playingSong} 
                              setPlayingSong={setPlayingSong}/>;   
@@ -72,7 +72,7 @@ export const Slide4MemoizedFilteredPlaylist = () => {
               }
             `}
           </CodePane>
-          <p className="code-pane-title">Playlist.tsx - genre filter is memoized</p>
+          <p className="code-pane-title">Playlist.tsx - with search</p>
         </div>
       </div>
     </div>

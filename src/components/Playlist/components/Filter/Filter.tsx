@@ -3,14 +3,15 @@ import { Genre } from '../Song/Song';
 
 import './Filter.scss';
 
-const genres: Array<Genre> = ['Hip-Hop', 'Electronic', 'Samba', 'Pop'];
+const staticGenres: Array<Genre> = ['Hip-Hop', 'Electronic', 'Samba', 'Pop'];
 
 interface FilterProps {
+  genres?: Array<Genre>;
   selectedGenre?: Genre;
   onClick: (filter: Genre) => void;
 }
 
-export const Filter: React.FC<FilterProps> = ({ selectedGenre, onClick }) => {
+export const Filter: React.FC<FilterProps> = ({ genres, selectedGenre, onClick }) => {
   const renderCounter = useRef<number>(0);
 
   renderCounter.current++;
@@ -18,7 +19,7 @@ export const Filter: React.FC<FilterProps> = ({ selectedGenre, onClick }) => {
   return (
     <div className="filter-container">
       <div className="genres">
-        {genres.map((genre: Genre) => {
+        {(genres || staticGenres).map((genre: Genre) => {
           const selected = selectedGenre === genre;
 
           return (

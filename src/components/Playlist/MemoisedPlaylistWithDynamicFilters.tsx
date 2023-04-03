@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import deepEqual from 'fast-deep-equal/es6';
 import { Genre, Search, Song, SongType } from './components';
 import { Filter } from './components/Filter/Filter';
 
@@ -6,25 +7,41 @@ import { songs } from './data';
 
 import './Playlist.scss';
 
-const MemoizedFilter = React.memo(Filter);
+const MemoizedFilter = React.memo(Filter, (prevProps, nextProps) => {
+  return deepEqual(prevProps, nextProps);
+});
 
 const MemoizedSong = React.memo(Song, (prevProps, nextProps) => {
   return !(prevProps.playingSongId === prevProps.id || nextProps.playingSongId === nextProps.id);
 });
+
+const getGenres = (songs: Array<SongType>): Array<Genre> => {
+  return songs.reduce((acc: Genre[], song: SongType) => {
+    if (acc.includes(song.genre)) {
+      return acc;
+    }
+
+    return [...acc, song.genre];
+  }, []);
+};
 
 interface FilteredPlaylistWithMemoizedSongsProps {
   memoizeFilter?: boolean;
   showSearch?: boolean;
 }
 
-export const FilteredPlaylistWithMemoizedSongs: React.FC<FilteredPlaylistWithMemoizedSongsProps> =
+export const MemoisedPlaylistWithDynamicFilters: React.FC<FilteredPlaylistWithMemoizedSongsProps> =
   React.memo<FilteredPlaylistWithMemoizedSongsProps>(({ memoizeFilter, showSearch }) => {
+    const getGenreCalls = useRef(0);
     const [playingSongId, setPlayingSongId] = useState<string>('');
 
     const [searchValue, setSearchValue] = useState<string>('');
 
     const [selectedGenre, setSelectedGenre] = useState<Genre | undefined>();
     const [filteredSongs, setFilteredSongs] = useState<Array<SongType>>(songs);
+
+    getGenreCalls.current++;
+    const genres = getGenres(filteredSongs);
 
     const onSongClick = (id: string) => {
       setPlayingSongId(id);
@@ -65,7 +82,7 @@ export const FilteredPlaylistWithMemoizedSongs: React.FC<FilteredPlaylistWithMem
         {showSearch && <Search value={searchValue} onSearch={onSearch} />}
 
         {memoizeFilter ? (
-          <MemoizedFilter selectedGenre={selectedGenre} onClick={filter} />
+          <MemoizedFilter genres={genres} selectedGenre={selectedGenre} onClick={filter} />
         ) : (
           <Filter selectedGenre={selectedGenre} onClick={filter} />
         )}
@@ -82,6 +99,12 @@ export const FilteredPlaylistWithMemoizedSongs: React.FC<FilteredPlaylistWithMem
               <p>No songs found</p>
             </div>
           )}
+        </div>
+
+        <div className="get-genre-calls">
+          <p>
+            getGenres called <span>{getGenreCalls.current}</span> times
+          </p>
         </div>
       </div>
     );
