@@ -1,5 +1,5 @@
-import { Deck } from 'spectacle';
-import { Slide1, Slide2 } from './slides';
+import { Deck, Slide, Stepper } from 'spectacle';
+import { Slide0, Slide1, Slide2, Slide3FilteredPlaylist, Slide4MemoizedFilteredPlaylist } from './slides';
 import React from 'react';
 
 const theme = {
@@ -41,9 +41,41 @@ export default function App() {
   return (
     //@ts-ignore
     <Deck theme={theme} transition={transition}>
-      <Slide1 />
+      <Slide0 />
 
-      <Slide2 />
+      <Slide backgroundColor="#282828">
+        <Slide1 />
+      </Slide>
+
+      <Slide backgroundColor="#282828">
+        <Slide2 />
+      </Slide>
+
+      <Slide backgroundColor="#282828">
+        <Slide3FilteredPlaylist />
+      </Slide>
+
+      <Slide backgroundColor="#282828">
+        <Slide4MemoizedFilteredPlaylist />
+      </Slide>
+
+      {/*<Slide>*/}
+      {/*  <p>Hello, world!</p>*/}
+      {/*  <Stepper tagName="p" values={['foo', 'bar']}>*/}
+      {/*    {(value, step, isActive) =>*/}
+      {/*      isActive*/}
+      {/*        ? `The first stepper is not active. Step: ${step} Value: ${value}`*/}
+      {/*        : `The first stepper is active. Step: ${step} Value: ${value}`*/}
+      {/*    }*/}
+      {/*  </Stepper>*/}
+      {/*  <Stepper tagName="p" values={['baz', 'quux']}>*/}
+      {/*    {(value, step, isActive) =>*/}
+      {/*      isActive*/}
+      {/*        ? `The second stepper is not active. Step: ${step} Value: ${value}`*/}
+      {/*        : `The second stepper is active. Step: ${step} Value: ${value}`*/}
+      {/*    }*/}
+      {/*  </Stepper>*/}
+      {/*</Slide>*/}
 
       {/*<p>Hello, world!</p>*/}
       {/*<Stepper tagName="p" alwaysVisible values={['foo', 'bar']}>*/}

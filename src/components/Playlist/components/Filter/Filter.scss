@@ -1,10 +1,24 @@
 .filter-container {
-  width: 100%;
+  width: calc(100% - 20px);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
   margin-bottom: 20px;
-  margin-left: 10px;
+  padding: 0 10px;
+
+  .genres {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .selected-genre {
+    border-color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #bebebe !important;
+    color: black !important;
+  }
 
   .filter-item {
     font-size: 12px;
@@ -20,5 +34,18 @@
     &:hover {
       background-color: #2b2b2b;
     }
+  }
+
+  .render-count {
+    font-size: 15px;
+    font-weight: 400;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #5b5b5b;
+    color: #ededed;
   }
 }

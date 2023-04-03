@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 
-import './Song.scss';
 import { Pause } from '../../../Icons';
+import './Song.scss';
+
+export type Genre = 'Hip-Hop' | 'Electronic' | 'Pop' | 'Samba';
 
 export interface SongType {
   id: string;
@@ -9,6 +11,7 @@ export interface SongType {
   artist: string;
   album: string;
   duration: number;
+  genre: Genre;
   image: string;
 }
 
@@ -17,7 +20,7 @@ export interface SongProps extends SongType {
   onClick: (id: string) => void;
 }
 
-export const Song: React.FC<SongProps> = ({ id, title, artist, image, playingSongId, onClick }) => {
+export const Song: React.FC<SongProps> = ({ id, title, artist, album, image, playingSongId, onClick }) => {
   const renderCounter = useRef<number>(0);
 
   renderCounter.current++;
@@ -43,7 +46,11 @@ export const Song: React.FC<SongProps> = ({ id, title, artist, image, playingSon
 
       <div className="song-info">
         <div className="song-title">{title}</div>
-        <div className="song-artist">{artist}</div>
+        <div className="song-artist-and-album">
+          <div className="song-artist">{artist}</div>
+          <p>•</p>
+          <div className="song-album">{album}</div>
+        </div>
       </div>
 
       <div className="song-render-count">{renderCounter.current}</div>

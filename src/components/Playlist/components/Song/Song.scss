@@ -56,10 +56,31 @@
       margin-bottom: 5px;
     }
 
-    .song-artist {
-      font-size: 14px;
-      font-weight: 400;
-      color: #c0c0c0;
+    .song-artist-and-album {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      & > p {
+        margin: 0 5px;
+        padding: 0;
+        color: #c0c0c0;
+        text-align: center;
+        line-height: 10px;
+      }
+
+      .song-artist {
+        font-size: 12px;
+        font-weight: 400;
+        color: #c0c0c0;
+      }
+
+      .song-album {
+        font-size: 12px;
+        font-weight: 400;
+        color: #c0c0c0;
+      }
     }
   }
 

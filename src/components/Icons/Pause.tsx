@@ -1,17 +1,5 @@
-import React, { CSSProperties } from 'react';
-
-type IconCSSProps = Pick<CSSProperties, 'transform' | 'transition' | 'marginRight'>;
-
-export interface IconProps extends IconCSSProps {
-  color?: string;
-  size?: string | number;
-  height?: string | number;
-  width?: string | number;
-  margin?: string;
-  marginLeft?: string;
-  marginRight?: string;
-  transform?: string;
-}
+import React from 'react';
+import { IconProps } from './index';
 
 export const Pause: React.FC<IconProps> = ({ color, size }) => (
   <svg viewBox="0 0 512 512" width={size} height={size}>
